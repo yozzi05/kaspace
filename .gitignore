@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+.env*.local
+.DS_Store
+
+# рабочие файлы, не для публичного репозитория
+.claude/
+kaspace-site-prompt.md
+reference/

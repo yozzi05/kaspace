@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Плашка-логотип: курсор статичный -->
+  <rect width="64" height="64" rx="15" fill="#F0EEE8"/>
+  <g transform="translate(-13.4 -13.4) scale(0.0818)">
+    <path fill="#0A1122" d="M304 330H403V615L549 436H654L549 558L663 739H551L486 630L393 739H304Z"/>
+    <rect fill="#1E86EA" x="699" y="393" width="108" height="383"/>
+  </g>
+</svg>
