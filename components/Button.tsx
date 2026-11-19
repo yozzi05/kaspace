@@ -73,7 +73,10 @@ export function Button({
       const dx = Math.max(left - e.clientX, 0, e.clientX - (left + r.width));
       const dy = Math.max(top - e.clientY, 0, e.clientY - (top + r.height));
 
-      if (Math.hypot(dx, dy) <= MAGNET_RADIUS) {
+      // над соседними элементами с data-no-magnet кнопка не тянется: иначе она наезжает на них
+      const blocked = e.target instanceof Element && e.target.closest('[data-no-magnet]') !== null;
+
+      if (!blocked && Math.hypot(dx, dy) <= MAGNET_RADIUS) {
         pulled = true;
         xTo((e.clientX - (left + r.width / 2)) * MAGNET_PULL);
         yTo((e.clientY - (top + r.height / 2)) * MAGNET_PULL);

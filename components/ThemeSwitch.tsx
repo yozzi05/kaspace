@@ -45,7 +45,7 @@ export function ThemeSwitch() {
 
   return (
     <>
-      <div className="ts" role="radiogroup" aria-label="Тема сайта">
+      <div className="ts" role="radiogroup" aria-label="Тема сайта" data-no-magnet>
         {OPTIONS.map((o) => (
           <button
             key={o.value}
@@ -65,6 +65,7 @@ export function ThemeSwitch() {
       <button
         type="button"
         className="ts-cycle"
+        data-no-magnet
         aria-label={`${OPTIONS[index].label}. Переключить: ${next.label.toLowerCase()}`}
         title={OPTIONS[index].label}
         data-cursor="none"
