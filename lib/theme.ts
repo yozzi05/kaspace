@@ -5,6 +5,8 @@ import { useSyncExternalStore } from 'react';
 export type ThemePref = 'light' | 'dark' | 'system';
 
 export const THEME_KEY = 'kaspace-theme';
+/** Тема для тех, кто ещё ничего не выбирал. То же значение стоит в lib/themeGuard.ts. */
+export const DEFAULT_THEME: ThemePref = 'light';
 const SYSTEM_LIGHT = '(prefers-color-scheme: light)';
 const BROWSER_BAR = { light: '#F0EEE8', dark: '#0A1122' } as const;
 
@@ -13,9 +15,9 @@ const listeners = new Set<() => void>();
 function read(): ThemePref {
   try {
     const v = localStorage.getItem(THEME_KEY);
-    return v === 'light' || v === 'dark' ? v : 'system';
+    return v === 'light' || v === 'dark' || v === 'system' ? v : DEFAULT_THEME;
   } catch {
-    return 'system';
+    return DEFAULT_THEME;
   }
 }
 
@@ -30,8 +32,8 @@ function apply(pref: ThemePref) {
 
 export function setTheme(pref: ThemePref) {
   try {
-    if (pref === 'system') localStorage.removeItem(THEME_KEY);
-    else localStorage.setItem(THEME_KEY, pref);
+    // «как в системе» тоже записывается: без записи действует тема по умолчанию
+    localStorage.setItem(THEME_KEY, pref);
   } catch {}
   apply(pref);
   listeners.forEach((l) => l());
@@ -61,5 +63,5 @@ function subscribe(onChange: () => void) {
 
 /** Выбор посетителя: светлая, тёмная или системная. */
 export function useTheme(): ThemePref {
-  return useSyncExternalStore(subscribe, read, () => 'system');
+  return useSyncExternalStore(subscribe, read, () => DEFAULT_THEME);
 }

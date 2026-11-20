@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0A1122',
+  themeColor: '#F0EEE8', // светлая тема по умолчанию; при смене темы значение обновляет lib/theme.ts
   colorScheme: 'dark light', // сама тема приходит из data-mode на <html>, см. lib/theme.ts
 };
 
