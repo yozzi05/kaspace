@@ -457,7 +457,8 @@ html[data-intro='done'] .intro {
   margin-top: clamp(14px, 3vh, 34px);
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(54px, 11.2vw, 200px);
+  /* заглавные шире строчных: кегль меньше прежних 11.2vw, чтобы строка помещалась с полями */
+  font-size: clamp(46px, 9.4vw, 168px);
   line-height: 0.95;
   letter-spacing: -0.045em;
   white-space: nowrap;
@@ -465,6 +466,7 @@ html[data-intro='done'] .intro {
 /* слова съезжаются из стороны в сторону и оставляют между собой пробел */
 .hero-word {
   display: block;
+  text-transform: uppercase;
   opacity: 0;
   transform: translateX(var(--from));
   transition:

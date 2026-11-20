@@ -40,7 +40,10 @@ async function overflow(page: Page) {
 
 async function run(width: number, reduced: boolean): Promise<Problem[]> {
   const phone = width < 768;
-  const browser = await chromium.launch();
+  // CHECK_RESOLVE="MAP example.ru 1.2.3.4": проверка домена, пока локальный DNS держит старый адрес
+  const browser = await chromium.launch({
+    args: process.env.CHECK_RESOLVE ? [`--host-resolver-rules=${process.env.CHECK_RESOLVE}`] : [],
+  });
   const context = await browser.newContext({
     viewport: { width, height: phone ? 800 : 900 },
     isMobile: phone,
